@@ -4,23 +4,20 @@
 
 1. Открыта таблица
 
-![image](https://user-images.githubusercontent.com/65844357/142892885-f71baec8-cce9-47d0-a7b4-3a47f50b625a.png)
+![image](https://user-images.githubusercontent.com/65844357/143010102-41f09b84-9416-4f60-8439-d7f585ed5cf1.png)
 
-2. Введено в строку поиска значение 'Ar'
+2. Нажата кнопка filter
 
-![image](https://user-images.githubusercontent.com/65844357/142893206-eca28235-39b7-4465-aba8-5a76703130e3.png)
+![image](https://user-images.githubusercontent.com/65844357/143010197-4ff17477-6cd4-4ee3-8138-ce9bc1a765e9.png)
 
-3. Нажата клавиша filter
+3. Введено значение 'Ar', нажата кнопка filter
 
-![image](https://user-images.githubusercontent.com/65844357/142893307-57d2d5cb-ead5-4e76-b405-62981ab6c727.png)
+![image](https://user-images.githubusercontent.com/65844357/143010380-6c2bdbd6-bc99-46bf-a407-29b88ddb20c5.png)
 
+4. Нажатие на название аккаунта контакта 'Tim Barr'
 
-4. Нажата ссылка (значение FirstName строки)
-
-![image](https://user-images.githubusercontent.com/65844357/142893690-d73a7c39-8fcd-463c-b4d7-add10792113a.png)
+![image](https://user-images.githubusercontent.com/65844357/143010685-bcb73479-e205-4920-9457-db4cc86c75f9.png)
 
 5. 100% покрытие тестами Apex Кода
 
-![image](https://user-images.githubusercontent.com/65844357/142893938-2663f0fd-92ae-42a3-8349-c5695380e534.png)
-
-
+![image](https://user-images.githubusercontent.com/65844357/143011153-f3a7d5aa-194e-4fa7-9870-461dab19f5d6.png)
