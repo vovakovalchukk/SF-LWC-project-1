@@ -6,7 +6,7 @@ public with sharing class ContactController {
         searchTerm = '%' + searchTerm.trim() + '%';
 
         return [
-            SELECT AccountId, Id, FirstName, LastName, Email, Account.Name, MobilePhone, CreatedDate
+            SELECT FirstName, LastName, Email, Account.Name, MobilePhone, CreatedDate
             FROM Contact
             WHERE Name LIKE :searchTerm
             WITH SECURITY_ENFORCED
