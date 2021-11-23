@@ -14,13 +14,6 @@ private class ContractControllerTest {
         insert testCons;
     }
 
-    @isTest static void testGetAllContacts(){
-       
-        List<Contact> testCons = new List<Contact>();
-        testCons = ContactController.getAllContacts();
-        System.assertEquals(2, testCons.size());
-    }
-
     @isTest static void testGetContactsWitnNameFilter() {
        
         List<Contact> testCons = new List<Contact>();

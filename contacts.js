@@ -1,26 +1,19 @@
 import { LightningElement } from 'lwc';
 import { reduceErrors } from 'c/ldsUtils';
 
-import FIRST_NAME from '@salesforce/schema/Contact.FirstName';
-import LAST_NAME from '@salesforce/schema/Contact.LastName';
-import EMAIL from '@salesforce/schema/Contact.Email';
-import ACCOUNT_NAME from '@salesforce/schema/Account.Name';
-import MOBILE_PHONE from '@salesforce/schema/Contact.Phone';
-import CREATED_DATE from '@salesforce/schema/Contact.CreatedDate';
-
 import searchContacts from '@salesforce/apex/ContactController.searchContacts';
 
 const COLUMNS = [
-    { label: 'First Name', fieldName: 'url', type: 'url', typeAttributes: { 
+    { label: 'First Name', fieldName: 'FirstName', type: 'text' },
+    { label: 'Last Name', fieldName: 'LastName', type: 'text' },
+    { label: 'Email', fieldName: 'Email', type: 'email' },
+    { label: 'Account Name', fieldName: 'AccountLink', type: 'url', typeAttributes: { 
         label: { 
-            fieldName: FIRST_NAME.fieldApiName 
+            fieldName: 'AccountName'
         } 
     } },
-    { label: 'Last Name', fieldName: LAST_NAME.fieldApiName, type: 'text' },
-    { label: 'Email', fieldName: EMAIL.fieldApiName, type: 'email' },
-    { label: 'Account Name', fieldName: ACCOUNT_NAME.fieldApiName, type: 'text' },
-    { label: 'Mobule Phone', fieldName: MOBILE_PHONE.fieldApiName, type: 'phone' },
-    { label: 'Created Date', fieldName: CREATED_DATE.fieldApiName, type: 'date', typeAttributes: {
+    { label: 'Mobule Phone', fieldName: 'MobilePhone', type: 'phone' },
+    { label: 'Created Date', fieldName: 'CreatedDate', type: 'date', typeAttributes: {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
@@ -36,24 +29,24 @@ export default class Contacts extends LightningElement {
     contacts;
     error;
 
-    connectedCallback() {
-        this.handleSearch();
-    }
-
-    handleSearchTermChange(event) {
-		window.clearTimeout(this.delayTimeout);
-		const searchTerm = event.target.value;
-		this.delayTimeout = setTimeout(() => {
-			this.searchTerm = searchTerm;
-		}, 300);
-	}
-
     handleSearch() {
+        this.searchTerm = this.template.querySelector('.slds-var-m-bottom_small').value;
         searchContacts({ searchTerm: this.searchTerm })
             .then((result) => {
-                this.contacts = JSON.parse(JSON.stringify(result));;
-                if(this.contacts){
-                    this.contacts.forEach(item => item['url'] = '/lightning/r/Contact/' + item['Id'] + '/view');
+                this.contacts = JSON.parse(JSON.stringify(result));
+                if (this.contacts) {
+                        this.contacts = this.contacts.map(function(item) {
+                            return {
+                                'FirstName' : item.FirstName,
+                                'LastName' : item.LastName,
+                                'Email' : item.Email,
+                                'MobilePhone' : item.MobilePhone,
+                                'AccountLink' : '/lightning/r/Account/' + item.Account.Id + '/view',
+                                'AccountName' : item.Account.Name,
+                                'CreatedDate' : item.CreatedDate,
+                            }
+                    });
+
                 }
                 this.error = undefined;
             })
